@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envelope</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 320px; /* Largura máxima para dispositivos móveis */
+            margin: 0 auto;
+        }
+
+        .message {
+            position: absolute;
+            top: -40px; /* Posição acima do envelope */
+            left: 50%; /* Centralizando horizontalmente */
+            transform: translateX(-50%);
+            font-size: 24px; /* Tamanho maior */
+            color: #333;
+            font-weight: bold; /* Negrito */
+            display: none; /* Inicialmente oculto */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message" id="message">Você é o miau do meu coração</div>
+        <div class="envlope-wrapper">
+            <div id="envelope" class="close">
+                <div class="front flap"></div>
+                <div class="front pocket"></div>
+                <div class="hearts">
+                    <div class="heart a1"></div>
+                    <div class="heart a2"></div>
+                    <div class="heart a3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="reset">
+        <button id="open">Open</button>
+        <button id="reset">Reset</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="openEnvelope.js"></script>
+    <script>
+        $(document).ready(function() {
+            var envelope = $('#envelope');
+            var btn_open = $("#open");
+            var btn_reset = $("#reset");
+            var message = $("#message");
+
+            envelope.click(function() {
+                open();
+            });
+            btn_open.click(function() {
+                open();
+            });
+            btn_reset.click(function() {
+                close();
+            });
+
+            function open() {
+                envelope.addClass("open").removeClass("close");
+                message.show(); // Exibir a mensagem
+            }
+            function close() {
+                envelope.addClass("close").removeClass("open");
+                message.hide(); // Ocultar a mensagem
+            }
+        });
+    </script>
+</body>
+</html>
